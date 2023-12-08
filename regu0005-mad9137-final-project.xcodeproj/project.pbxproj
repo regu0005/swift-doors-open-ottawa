@@ -21,6 +21,7 @@
 		B0481ED32B225DAD004BC15B /* BuildingsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0481ED22B225DAD004BC15B /* BuildingsDataModel.swift */; };
 		B0481ED52B225E00004BC15B /* CategoriesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0481ED42B225E00004BC15B /* CategoriesDataModel.swift */; };
 		B0481ED72B225E26004BC15B /* LanguagesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0481ED62B225E26004BC15B /* LanguagesDataModel.swift */; };
+		B05039112B22AA4900E87F23 /* PlaceUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05039102B22AA4900E87F23 /* PlaceUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		B0481ED22B225DAD004BC15B /* BuildingsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsDataModel.swift; sourceTree = "<group>"; };
 		B0481ED42B225E00004BC15B /* CategoriesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataModel.swift; sourceTree = "<group>"; };
 		B0481ED62B225E26004BC15B /* LanguagesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesDataModel.swift; sourceTree = "<group>"; };
+		B05039102B22AA4900E87F23 /* PlaceUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				B0481ECB2B225CA6004BC15B /* CategoriesScrollView.swift */,
 				B0481ECD2B225CB4004BC15B /* RandomBuildingsView.swift */,
 				B0481ECF2B225CD7004BC15B /* BuildingsByAmenitiesView.swift */,
+				B05039102B22AA4900E87F23 /* PlaceUI.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				B0481EC82B224BD7004BC15B /* NetUI.swift in Sources */,
 				B0481EB32B2246CB004BC15B /* regu0005_mad9137_final_projectApp.swift in Sources */,
 				B0481ECC2B225CA6004BC15B /* CategoriesScrollView.swift in Sources */,
+				B05039112B22AA4900E87F23 /* PlaceUI.swift in Sources */,
 				B0481ED32B225DAD004BC15B /* BuildingsDataModel.swift in Sources */,
 				B0481ECA2B225C9A004BC15B /* HeroSectionView.swift in Sources */,
 				B0481ED52B225E00004BC15B /* CategoriesDataModel.swift in Sources */,

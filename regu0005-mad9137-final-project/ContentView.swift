@@ -31,13 +31,9 @@ struct ContentView: View {
             else {
                 VStack {
                     ScrollView {
-                        Image(systemName: "globe")
-                            .imageScale(.large)
-                            .foregroundStyle(.tint)
-                        
-                        HeroSectionView()
+                        HeroSectionView(buildingsDataModel:buildingsDataModel)
                         CategoriesScrollView(categoriesDataModel: categoriesDataModel)
-                        RandomBuildingsView()
+                        RandomBuildingsView(buildingsDataModel: buildingsDataModel)
                         BuildingsByAmenitiesView()
                     }
                 }

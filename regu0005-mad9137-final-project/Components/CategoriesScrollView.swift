@@ -14,7 +14,7 @@ struct CategoriesScrollView: View {
     // Constants for layout
     let gridSpacing:    CGFloat = 20
     let cardWidth:      CGFloat = 170
-    let cardHeight:     CGFloat = 160
+    let cardHeight:     CGFloat = 80
     let imageHeight:    CGFloat = 100
     
     var body: some View {
@@ -49,7 +49,8 @@ struct CategoriesScrollView: View {
                                     .frame(width: cardWidth, height: cardHeight)
                                     .background(Color.white)
                                     .cornerRadius(10)
-                                    .shadow(radius: 1)
+//                                    .shadow(radius: 1)
+                                    .shadow(color: Color.black.opacity(0.09), radius: 5, x: 0, y: 2)
                                 
                             }
                             .padding(.bottom, 5)

@@ -55,11 +55,12 @@ struct PostBuilding: Codable, Identifiable {
     var longitude: String?
     var idCategory: Int
     var category: String
+    var visits: Int
     var schedules: [Schedule]?
     var amenities: [Amenity]?
 
     enum CodingKeys: String, CodingKey {
-        case id = "id_building", name, description, buildingYear = "building_year", isNew = "is_new", address, website, email, phoneNumber = "phone_number", cellphoneNumber = "cellphone_number", image, imageDescription = "image_description", latitude, longitude, idCategory = "id_category", category, schedules, amenities
+        case id = "id_building", name, description, buildingYear = "building_year", isNew = "is_new", address, website, email, phoneNumber = "phone_number", cellphoneNumber = "cellphone_number", image, imageDescription = "image_description", latitude, longitude, idCategory = "id_category", category, visits, schedules, amenities
     }
 }
 
@@ -95,5 +96,13 @@ class BuildingsDataModel: ObservableObject {
                 print("Received data: \(String(data: data, encoding: .utf8) ?? "Invalid data")")
             }
         }.resume()
+    }
+    
+    func getRandomBuildings(count: Int = 5) -> [PostBuilding] {
+            return Array(buildings.shuffled().prefix(count))
+    }
+    
+    func getTopThreeVisitedBuildings(count: Int = 3) -> [PostBuilding] {
+            return Array(buildings.sorted { $0.visits > $1.visits }.prefix(count))
     }
 }
