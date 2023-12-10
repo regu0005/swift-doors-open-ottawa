@@ -44,7 +44,7 @@ class CategoriesDataModel: ObservableObject {
                     self?.categories = decodedCategories
                     self?.isLoading = false
                     
-                    print("Categories: \(String(describing: self?.categories))")
+                    //print("Categories: \(String(describing: self?.categories))")
                 }
             } catch {
                 print("Error decoding JSON: \(error.localizedDescription)")

@@ -42,8 +42,7 @@ class LanguagesDataModel: ObservableObject {
                 DispatchQueue.main.async {
                     self?.languages = decodedLanguages
                     self?.isLoading = false
-                    
-                    print("Languages: \(String(describing: self?.languages))")
+                    //print("Languages: \(String(describing: self?.languages))")
                 }
             } catch {
                 print("Error decoding JSON: \(error.localizedDescription)")

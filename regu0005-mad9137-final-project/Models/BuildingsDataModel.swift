@@ -25,7 +25,7 @@ struct Schedule: Codable {
 }
 
 struct Amenity: Codable {
-    var idAmenity: Int
+    let id: Int
     var amenity: String
     var value: Int
     var icon: String
@@ -34,7 +34,7 @@ struct Amenity: Codable {
     var comment: String?
 
     enum CodingKeys: String, CodingKey {
-        case idAmenity = "id_amenity", amenity, value, icon, description, keyword, comment
+        case id = "id_amenity", amenity, value, icon, description, keyword, comment
     }
 }
 
@@ -68,13 +68,14 @@ struct PostBuilding: Codable, Identifiable {
 class BuildingsDataModel: ObservableObject {
     @Published var buildings: [PostBuilding] = []
     @Published var isLoading = true
+    @Published var filteredBuildingsCount: Int = 0 
     
     init() {
         fetchBuildingsData()
     }
 
     private func fetchBuildingsData() {
-        guard let url = URL(string: "https://buildings.tusmodelos.com/api_buildings") else { return }
+        guard let url = URL(string: "https://buildings.tusmodelos.com/api_buildings?limit=5") else { return }
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             if let error = error {
                 print("Network error: \(error.localizedDescription)")
@@ -104,5 +105,26 @@ class BuildingsDataModel: ObservableObject {
     
     func getTopThreeVisitedBuildings(count: Int = 3) -> [PostBuilding] {
             return Array(buildings.sorted { $0.visits > $1.visits }.prefix(count))
+    }
+   
+    func filterBuildings(selectedAmenities: Set<Int>, searchText: String) -> [PostBuilding] {
+        
+        if selectedAmenities.isEmpty && searchText.isEmpty {
+                return []
+            }
+        
+        return buildings.filter { building in
+            let nameMatch = searchText.isEmpty || building.name.lowercased().contains(searchText.lowercased())
+
+            if selectedAmenities.isEmpty {
+                return nameMatch
+            }
+
+            let amenitiesMatch = building.amenities?.contains(where: { amenity in
+                selectedAmenities.contains(amenity.id)
+            }) ?? false
+
+            return nameMatch && amenitiesMatch
+        }
     }
 }

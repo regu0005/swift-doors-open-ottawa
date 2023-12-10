@@ -69,13 +69,13 @@ struct PlaceUI: View {
                                     }
                                 }
                         case .failure:
-                            Image("algonquin")
+                            Image("placeholder_image")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                             
                             
                         @unknown default:
-                            Image("algonquin")
+                            Image("placeholder_image")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                         }
@@ -116,15 +116,11 @@ struct PlaceUI: View {
             }
 
 //            .onTapGesture(count: 2) {
-
 //                print("Tapped 2")
-
 //            }
 
 //            .onLongPressGesture(){
-
 //                print("Long press")
-
 //            }
 
             .background(Color.white)
@@ -132,7 +128,6 @@ struct PlaceUI: View {
 //            .shadow(radius: 6)
             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             .padding(.bottom, 20)
-
 //            Spacer()
 
         }
@@ -205,5 +200,5 @@ struct PlaceUI: View {
 
 #Preview {
     //PlaceUI()
-    PlaceUI(title: "demo", description: "test", visits: 123, image: "niagara")
+    PlaceUI(title: "demo", description: "test", visits: 123, image: "placeholder_image")
 }

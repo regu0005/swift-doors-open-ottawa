@@ -98,58 +98,6 @@ struct HeroSectionView: View {
         .frame(height: 278)
         .padding(.top, -10)
         .edgesIgnoringSafeArea(.all)
-        
-//        TabView(selection: $selectedBuildingIndex)
-//        {
-//                ForEach(buildingsDataModel.getTopThreeVisitedBuildings(), id: \.id) { building in
-//                    ZStack(alignment: .topTrailing) {
-//                        AsyncImage(url: URL(string: building.image ?? "")) { phase in
-//                            switch phase {
-//                            case .empty:
-//                                Color.clear
-//                                    .frame(maxWidth: .infinity, maxHeight: 260)
-//                                ProgressView("...")
-//                                    .font(.headline)
-//                                    .bold()
-//                                
-//                            case .success(let image):
-//                                image.resizable()
-//                                    .aspectRatio(contentMode: .fill)
-//                                    .transition(.opacity)
-//                                    .animation(.easeInOut(duration: 0.5), value: selectedBuildingIndex)
-//                            case .failure:
-//                                Image("algonquin")
-//                                    .resizable()
-//                                    .aspectRatio(contentMode: .fill)
-//                            @unknown default:
-//                                EmptyView()
-//                            }
-//                        }
-//                        .frame(maxWidth: .infinity, maxHeight: 260)
-//                        .clipped()
-//
-//                        VStack(alignment: .trailing, spacing: 10) {
-//                            Text(building.name)
-//                                .font(Font.system(size: 12))
-////                                    .fontWeight(.bold)
-//                                .italic()
-//                                .padding(.top, 264)
-//                                .padding(.horizontal, 16)
-//
-////                                Text(building.address)
-////                                    .font(Font.system(size: 12))
-////                                    .foregroundColor(.secondary)
-////                                    .padding(.top, -10)
-////                                    .padding(.horizontal, 20)
-//                        }
-//                    }
-//                    .tag(building.id)
-//                } // end foreach
-//        } // end tabview
-//        .tabViewStyle(PageTabViewStyle())
-//        .frame(height: 278)
-//        .padding(.top,-5)
-//        .edgesIgnoringSafeArea(.all)
     }
     
     enum ImageLoadState {

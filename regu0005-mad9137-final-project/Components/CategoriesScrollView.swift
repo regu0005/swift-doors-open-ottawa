@@ -25,11 +25,9 @@ struct CategoriesScrollView: View {
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
-                        
                     Spacer()
-                    
-                    Text("See more")
-                        .padding(.horizontal,20)
+//                    Text("See more")
+//                        .padding(.horizontal,20)
                     
                 }.padding(.top, 15)
             
