@@ -21,7 +21,6 @@ struct ContentView: View {
     @EnvironmentObject var networkMonitor: NetworkMonitor
     
     var body: some View {
-        
                 TabView {
                     NavigationView {
                         VStack {
@@ -65,7 +64,7 @@ struct ContentView: View {
                             .padding(.top, 10)
                         }
                     // Map Tab
-                    MapBuildingsView()
+                    MapBuildingsContainerView(buildingsDataModel: BuildingsDataModel())
                         .tabItem {
                             VStack {
                                 Label("Map", systemImage: "map")
