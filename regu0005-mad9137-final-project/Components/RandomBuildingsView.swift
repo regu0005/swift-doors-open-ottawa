@@ -9,61 +9,63 @@ import SwiftUI
 
 struct RandomBuildingsView: View {
     @ObservedObject var buildingsDataModel : BuildingsDataModel
+    @ObservedObject var amenitiesDataModel : AmenitiesDataModel
+    @ObservedObject var favoritesManagerModel: FavoritesManagerModel
+    var networkMonitor: NetworkMonitor
+    
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack{
-            VStack {
-                Text("Today's Random Buildings")
-                    .font(.title3)
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
-                
-                    HStack
-                    {
-                        Spacer()
-                    }
-                    
-                    ForEach(buildingsDataModel.getRandomBuildings(), id: \.id) { building in
+        
+        VStack {
+            Text("Today's Random Buildings")
+                .font(.title3)
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
+            
+            HStack
+            {
+                Spacer()
+            }
+            
+            if buildingsDataModel.randomBuildings.isEmpty {
+                            Text("Cargando edificios...")
+            }
+            else {
+                ForEach(buildingsDataModel.randomBuildings, id: \.id) { building in
+
+                    NavigationLink(destination: BuildingDetailView(buildingsDataModel: buildingsDataModel, amenitiesDataModel: amenitiesDataModel, favoritesManagerModel: favoritesManagerModel, networkMonitor: networkMonitor, building: building)) {
+                        ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
+                            PlaceUI(
+                                title: building.name,
+                                description: building.address,
+                                visits: building.visits,
+                                image: building.image!
+                            )
+                            Button(action: {
+                                favoritesManagerModel.toggleFavorite(buildingID: building.id)
+                            }) {
+                                Image(systemName: favoritesManagerModel.favorites[building.id, default: false] ? "heart.fill" : "heart.fill")
+                                    .font(.system(size: 30))
+                                    .foregroundColor(favoritesManagerModel.favorites[building.id, default: false] ? Color.red : Color.white)
+                            }
+                            .padding(.top, 155)
+                            .padding(.trailing, 20)
+                        }
                         
-                        PlaceUI(title: building.name, description: building.address, visits: building.visits ,image: building.image!)
                     }
-            }
-
-            Spacer()
-
-            ZStack {
-                HStack {
-
-                    Image(systemName: "thermometer.sun.fill")
-                        .font(.system(size: 30))
-                        .foregroundColor(.white)
-                    Text("72 F")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                    Spacer()
-                    Image(systemName: "drop.fill")
-                        .font(.system(size: 30))
-                        .foregroundColor(.white)
-
-                    Text("40%")
-                        .font(.headline)
-                        .foregroundColor(.white)
                 }
-                .padding(20)
-                .zIndex(1)
-
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.blue)
-                    .frame(height: 60)
+                .onAppear {
+                    buildingsDataModel.updateRandomBuildings()
+                }
             }
-            .padding(.horizontal,20)
+            
         }
-        .background(Color(.white))
+        .padding(.bottom,60)
     }
 }
 
-#Preview {
-    RandomBuildingsView(buildingsDataModel: BuildingsDataModel())
-}
+//#Preview {
+//    RandomBuildingsView(buildingsDataModel: BuildingsDataModel())
+//}

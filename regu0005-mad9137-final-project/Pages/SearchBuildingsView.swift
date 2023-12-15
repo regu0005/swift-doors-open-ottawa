@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchBuildingsView: View {
     @ObservedObject var buildingsDataModel : BuildingsDataModel
     @ObservedObject var amenitiesDataModel : AmenitiesDataModel
+    @ObservedObject var favoritesManagerModel: FavoritesManagerModel
     var networkMonitor: NetworkMonitor
     
     
@@ -58,8 +59,9 @@ struct SearchBuildingsView: View {
             
             LazyVStack {
                 ForEach(filteredBuildings) { building in
+                    NavigationLink(destination: BuildingDetailView(buildingsDataModel: buildingsDataModel, amenitiesDataModel: amenitiesDataModel, favoritesManagerModel:favoritesManagerModel, networkMonitor: networkMonitor, building: building)) {
+                        
                         HStack {
-
                             VStack(alignment: .leading) {
                                 Text(building.name)
                                     .font(.headline)
@@ -73,8 +75,11 @@ struct SearchBuildingsView: View {
                             }
                             Spacer()
                         }
-                        Divider()
-                    
+                        .padding(.horizontal,20)
+                        .padding(.top,10)
+                        .padding(.bottom,5)
+                    } // end navigationlink
+                    Divider()
                 }
             } // End LazyVStack
         } // end scrollview
@@ -110,5 +115,5 @@ struct SearchBuildingsView: View {
 }
 
 #Preview {
-    SearchBuildingsView(buildingsDataModel:BuildingsDataModel(), amenitiesDataModel:AmenitiesDataModel() ,networkMonitor:NetworkMonitor())
+    SearchBuildingsView(buildingsDataModel:BuildingsDataModel(), amenitiesDataModel:AmenitiesDataModel(), favoritesManagerModel: FavoritesManagerModel() ,networkMonitor:NetworkMonitor())
 }

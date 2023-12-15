@@ -16,40 +16,48 @@ struct ContentView: View {
     @StateObject var categoriesDataModel = CategoriesDataModel()
     @StateObject var amenitiesDataModel = AmenitiesDataModel()
     @StateObject var languagesDataModel = LanguagesDataModel()
+    @StateObject var favoritesManagerModel = FavoritesManagerModel()
         
     @EnvironmentObject var networkMonitor: NetworkMonitor
     
     var body: some View {
         
                 TabView {
-                    VStack {
-                        if(buildingsDataModel.isLoading &&
-                           categoriesDataModel.isLoading &&
-                           languagesDataModel.isLoading
-                        ) {
-                            ProgressView("Loading...")
-                                .font(.headline)
-                                .bold()
-                        }
-                        else {
-                            VStack {
-                                ScrollView {
-                                    HeroSectionView(buildingsDataModel:buildingsDataModel)
-                                    CategoriesScrollView(categoriesDataModel: categoriesDataModel)
-                                    RandomBuildingsView(buildingsDataModel: buildingsDataModel)
-                                    BuildingsByAmenitiesView()
-                                }
+                    NavigationView {
+                        VStack {
+                            if(buildingsDataModel.isLoading &&
+                               categoriesDataModel.isLoading &&
+                               languagesDataModel.isLoading
+                            ) {
+                                ProgressView("Loading...")
+                                    .font(.headline)
+                                    .bold()
                             }
-                            .edgesIgnoringSafeArea(.all)
-                            .navigationBarTitle("Buildings Home", displayMode: .inline)
-                            .navigationBarHidden(true)
+                            else {
+                                VStack {
+                                    ScrollView {
+                                        HeroSectionView(buildingsDataModel:buildingsDataModel)
+                                        CategoriesScrollView(categoriesDataModel: categoriesDataModel)
+                                        
+                                        //NavigationView {
+                                        RandomBuildingsView(buildingsDataModel: buildingsDataModel, amenitiesDataModel: amenitiesDataModel, favoritesManagerModel: favoritesManagerModel, networkMonitor: networkMonitor)
+                                        //}
+                                        BuildingsByAmenitiesView()
+                                    }
+                                }
+                                .edgesIgnoringSafeArea(.all)
+                                .navigationBarTitle("Buildings Home", displayMode: .inline)
+                                .navigationBarHidden(true)
+                            }
                         }
                     }
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
                     // Search Tab
-                    SearchBuildingsView(buildingsDataModel: buildingsDataModel, amenitiesDataModel:amenitiesDataModel, networkMonitor: networkMonitor)
+                    NavigationView {
+                        SearchBuildingsView(buildingsDataModel: buildingsDataModel, amenitiesDataModel:amenitiesDataModel, favoritesManagerModel: favoritesManagerModel, networkMonitor: networkMonitor)
+                        }
                         .tabItem {
                             VStack {
                                 Label("Search", systemImage: "magnifyingglass")
@@ -65,7 +73,9 @@ struct ContentView: View {
                             .padding(.top, 10)
                         }
                     // Favorites Tab
-                    FavoritesBuildingsView()
+                    NavigationView {
+                        FavoritesBuildingsView(buildingsDataModel: buildingsDataModel, amenitiesDataModel: amenitiesDataModel, favoritesManagerModel: favoritesManagerModel, networkMonitor: networkMonitor)
+                        }
                         .tabItem {
                             VStack {
                                 Label("Favorites", systemImage: "heart")

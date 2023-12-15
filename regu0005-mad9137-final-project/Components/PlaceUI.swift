@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct PlaceUI: View {
     
     var title: String
@@ -30,16 +28,8 @@ struct PlaceUI: View {
     var body: some View {
         HStack {
 
-            // Spacer()
-            // leading align the text and the image to the border left
-
-            // spacing: do a distance between the image and text in the VStack
-
             VStack(alignment: .leading, spacing: 14) {
 
-//                Image(image)
-//                    .resizable()
-//                    .frame(width: 360, height: 200)
                 ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top))
                 {
                     if(!isMainImageLoaded) {
@@ -84,31 +74,7 @@ struct PlaceUI: View {
                     .clipped()
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 6)
                     
-                    Button(action: {
-                        //favoritesManagerModel.toggleFavorite(countryID: country.id)
-                    }) {
-                        Image(systemName: "heart.fill"
-                            //systemName: favoritesManagerModel.favorites[country.id, default: false] ? "heart.fill" : "heart"
-                            )
-                            .foregroundColor(.red)
-                            .font(.system(size: 30))
-                            .padding(.top, 180)
-                            .padding(.trailing, 10)
-                            .padding(.trailing)
-                    }
-                    
-                    Button(action: {
-                        //favoritesManagerModel.toggleFavorite(countryID: country.id)
-                    }) {
-                        Image(systemName: "square.and.arrow.up.fill"
-                            //systemName: favoritesManagerModel.favorites[country.id, default: false] ? "heart.fill" : "heart"
-                            )
-                            .foregroundColor(.white)
-                            .font(.system(size: 30))
-                            .padding(.top, 173)
-                            .padding(.trailing, 64)
-                            .padding(.trailing)
-                    }
+//
                 }
                 .frame(maxWidth: .infinity, maxHeight: 200)
 
@@ -125,10 +91,8 @@ struct PlaceUI: View {
 
             .background(Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 16))
-//            .shadow(radius: 6)
             .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             .padding(.bottom, 20)
-//            Spacer()
 
         }
         .frame(width: 360)

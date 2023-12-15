@@ -18,8 +18,8 @@ struct FilterView: View {
         NavigationView {
                     List {
                         Section(header: Text("Sort").font(.title3).bold()) {
-                            Toggle("Most Visited", isOn: $optionEnabled)
-                            Toggle("Closest", isOn: $optionEnabled)
+                            Toggle("Most Visited", isOn: $optionEnabled).disabled(true)
+                            Toggle("Closest", isOn: $optionEnabled).disabled(true)
                         }
 
                         Section(header: Text("Amenities").font(.title3).bold()) {

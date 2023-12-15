@@ -11,7 +11,6 @@ struct NetUI: View {
     @EnvironmentObject var networkMonitor : NetworkMonitor
     
     var body: some View {
-        //NavigationView{
             if networkMonitor.isConnected {
                 //Text("Network is connected")
                 ContentView()
@@ -23,6 +22,5 @@ struct NetUI: View {
                                        description: Text("Check your data or wifi")
                 )
             }
-        //}
     }
 }

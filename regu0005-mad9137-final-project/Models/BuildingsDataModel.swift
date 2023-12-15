@@ -8,7 +8,7 @@ import SwiftUI
 import Combine
 
 struct Schedule: Codable {
-    var idSchedule: Int
+    var id: Int
     var monday: Int
     var tuesday: Int
     var wednesday: Int
@@ -20,7 +20,7 @@ struct Schedule: Codable {
     var timeEnd: String
 
     enum CodingKeys: String, CodingKey {
-        case idSchedule = "id_schedule", monday, tuesday, wednesday, thursday, friday, saturday, sunday, timeIni = "time_ini", timeEnd = "time_end"
+        case id = "id_schedule", monday, tuesday, wednesday, thursday, friday, saturday, sunday, timeIni = "time_ini", timeEnd = "time_end"
     }
 }
 
@@ -69,13 +69,15 @@ class BuildingsDataModel: ObservableObject {
     @Published var buildings: [PostBuilding] = []
     @Published var isLoading = true
     @Published var filteredBuildingsCount: Int = 0 
+    @Published var randomBuildings: [PostBuilding] = []
     
     init() {
         fetchBuildingsData()
     }
 
     private func fetchBuildingsData() {
-        guard let url = URL(string: "https://buildings.tusmodelos.com/api_buildings?limit=5") else { return }
+//        guard let url = URL(string: "https://buildings.tusmodelos.com/api_buildings?limit=50") else { return }
+        guard let url = URL(string: "https://buildings.tusmodelos.com/api_buildings") else { return }
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             if let error = error {
                 print("Network error: \(error.localizedDescription)")
@@ -91,6 +93,7 @@ class BuildingsDataModel: ObservableObject {
                     self?.buildings = decodedBuildings
                     self?.isLoading = false
                     // print("Buildings: \(String(describing: self?.buildings))")
+                    self?.updateRandomBuildings()
                 }
             } catch {
                 print("Error decoding JSON: \(error.localizedDescription)")
@@ -99,8 +102,8 @@ class BuildingsDataModel: ObservableObject {
         }.resume()
     }
     
-    func getRandomBuildings(count: Int = 5) -> [PostBuilding] {
-            return Array(buildings.shuffled().prefix(count))
+    func updateRandomBuildings() {
+            self.randomBuildings = Array(buildings.shuffled().prefix(5))
     }
     
     func getTopThreeVisitedBuildings(count: Int = 3) -> [PostBuilding] {

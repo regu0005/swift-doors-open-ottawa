@@ -14,38 +14,48 @@ struct SplashScreenView: View {
     
     var body: some View {
         if(isActive) {
-//            ContentView()
+            // ContentView()
             NetUI()
         }
         else
         {
-            VStack {
+            ZStack {
+                Color(#colorLiteral(red: 0.227, green: 0.380, blue: 0.600, alpha: 1))
+                    .edgesIgnoringSafeArea(.all)
+                
                 VStack {
-                    Image("ic_logo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 180, height: 180)
-                    Text("Doors Open Ottawa")
-                        .font(Font.title)
-                        .bold()
-                    Text("Gustavo Reguerin")
-                        .font(.body)
-                        .padding(.top, 40)
-                    Text("MADD 2023")
-                        .font(.footnote)
-                        .padding(.top, 30)
-                }
-                .scaleEffect(size)
-                .opacity(opacity)
-                .onAppear {
-//                    withAnimation(.easeIn(duration: 1.0)) {
+                    VStack {
+                        Image("ic_logo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 180, height: 180)
+                        Text("Doors Open Ottawa")
+                            .font(Font.title)
+                            .bold()
+                            .foregroundColor(.white)
+                        Text("Gustavo Reguerin")
+                            .font(.body)
+                            .bold()
+                            .padding(.top, 40)
+                            .foregroundColor(.white)
+                        Text("MADD 2023")
+                            .font(.footnote)
+                            .bold()
+                            .padding(.top, 20)
+                            .foregroundColor(.white)
+                    }
+                    .scaleEffect(size)
+                    .opacity(opacity)
+                    .onAppear {
+                        //  withAnimation(.easeIn(duration: 1.0)) {
                         self.size = 0.9
                         self.opacity = 1.0
-//                    }
+                        //  }
+                    }
                 }
             }
             .onAppear(){
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
                     withAnimation{
                         self.isActive = true
                     }

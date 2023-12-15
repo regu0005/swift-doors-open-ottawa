@@ -14,6 +14,8 @@ struct HeroSectionView: View {
     @State private var imageLoadState = ImageLoadState.loading
     @State private var imageScale: CGFloat = 0.9
     
+    @State private var textOpacity = 0.0
+    
     let timer = Timer.publish(every: 4, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -31,7 +33,7 @@ struct HeroSectionView: View {
                             .onAppear {
                                 imageLoadState = .loading
                                 imageScale = 1.0
-                                print("loading empty...");
+//                                print("loading empty...");
                             }
 
                     case .success(let image):
@@ -44,7 +46,7 @@ struct HeroSectionView: View {
                                     withAnimation(.easeIn(duration: 4.2)) {
                                         imageScale = 1.1
                                         imageLoadState = .loaded
-                                        print("loading success...")
+//                                        print("loading success...")
                                     }
                                 }
                             }
@@ -73,26 +75,27 @@ struct HeroSectionView: View {
                         imageScale = 1.0
                     }
                 } // end asyncimage
-//                VStack(alignment: .trailing, spacing: 10) {
-//                    Text(building.name)
-//                        .font(Font.system(size: 14))
-//                        .italic()
-//                        .padding(.top, 280)
-//                        .opacity(textOpacity)
-//                        .onAppear {
-//                            withAnimation(.smooth(duration: 0.5)) {
-//                                textOpacity = 1.0
-//                            }
-//                        }
-//                            .padding(.leading, 40)
-//                            .padding(.horizontal, 16)
+                
+                VStack(alignment: .trailing, spacing: 10) {
+                    Text(building.name)
+                        .font(Font.system(size: 14))
+                        .italic()
+                        .padding(.top, 280)
+                        .opacity(textOpacity) 
+                        .onAppear {
+                            withAnimation(.smooth(duration: 0.5)) {
+                                textOpacity = 1.0
+                            }
+                        }
+                            .padding(.leading, 40)
+                            .padding(.horizontal, 16)
                 
                 ////                                Text(building.address)
                 ////                                    .font(Font.system(size: 12))
                 ////                                    .foregroundColor(.secondary)
                 ////                                    .padding(.top, -10)
                 ////                                    .padding(.horizontal, 20)
-                //}
+                }
             }
         }
         .frame(height: 278)

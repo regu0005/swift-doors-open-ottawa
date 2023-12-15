@@ -28,6 +28,9 @@
 		B0481ED52B225E00004BC15B /* CategoriesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0481ED42B225E00004BC15B /* CategoriesDataModel.swift */; };
 		B0481ED72B225E26004BC15B /* LanguagesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0481ED62B225E26004BC15B /* LanguagesDataModel.swift */; };
 		B05039112B22AA4900E87F23 /* PlaceUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05039102B22AA4900E87F23 /* PlaceUI.swift */; };
+		B0A982B22B2791990026E182 /* FavoritesManagerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A982B12B2791990026E182 /* FavoritesManagerModel.swift */; };
+		B0CAB0222B2685FB00131B31 /* BuildingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CAB0212B2685FB00131B31 /* BuildingDetailView.swift */; };
+		B0F500FB2B2BFD6900A58731 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F500FA2B2BFD6900A58731 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,10 @@
 		B0481ED42B225E00004BC15B /* CategoriesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataModel.swift; sourceTree = "<group>"; };
 		B0481ED62B225E26004BC15B /* LanguagesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesDataModel.swift; sourceTree = "<group>"; };
 		B05039102B22AA4900E87F23 /* PlaceUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceUI.swift; sourceTree = "<group>"; };
+		B0A982B12B2791990026E182 /* FavoritesManagerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManagerModel.swift; sourceTree = "<group>"; };
+		B0CAB0212B2685FB00131B31 /* BuildingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingDetailView.swift; sourceTree = "<group>"; };
+		B0F500F92B2BFC4B00A58731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B0F500FA2B2BFD6900A58731 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +92,8 @@
 		B0481EB12B2246CB004BC15B /* regu0005-mad9137-final-project */ = {
 			isa = PBXGroup;
 			children = (
+				B0F500F92B2BFC4B00A58731 /* Info.plist */,
+				B0666E402B27E0CD006C59EA /* Utils */,
 				B0481ED12B225D86004BC15B /* Models */,
 				B0481EC22B224B2B004BC15B /* Services */,
 				B0481EC12B224B1F004BC15B /* Components */,
@@ -114,6 +123,7 @@
 				B03CDC4E2B240C2A00993658 /* MapBuildingsView.swift */,
 				B03CDC502B240C5A00993658 /* FavoritesBuildingsView.swift */,
 				B03CDC522B240C8200993658 /* InfoView.swift */,
+				B0CAB0212B2685FB00131B31 /* BuildingDetailView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -135,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				B0481EC32B224B57004BC15B /* NetworkMonitor.swift */,
+				B0F500FA2B2BFD6900A58731 /* LocationManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -146,8 +157,16 @@
 				B0481ED42B225E00004BC15B /* CategoriesDataModel.swift */,
 				B0481ED62B225E26004BC15B /* LanguagesDataModel.swift */,
 				B03CDC562B24FACE00993658 /* AmenitiesDataModel.swift */,
+				B0A982B12B2791990026E182 /* FavoritesManagerModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B0666E402B27E0CD006C59EA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,10 +250,13 @@
 				B03CDC572B24FACE00993658 /* AmenitiesDataModel.swift in Sources */,
 				B03CDC512B240C5A00993658 /* FavoritesBuildingsView.swift in Sources */,
 				B0481EC42B224B57004BC15B /* NetworkMonitor.swift in Sources */,
+				B0CAB0222B2685FB00131B31 /* BuildingDetailView.swift in Sources */,
 				B0481EC82B224BD7004BC15B /* NetUI.swift in Sources */,
 				B0481EB32B2246CB004BC15B /* regu0005_mad9137_final_projectApp.swift in Sources */,
+				B0F500FB2B2BFD6900A58731 /* LocationManager.swift in Sources */,
 				B0481ECC2B225CA6004BC15B /* CategoriesScrollView.swift in Sources */,
 				B05039112B22AA4900E87F23 /* PlaceUI.swift in Sources */,
+				B0A982B22B2791990026E182 /* FavoritesManagerModel.swift in Sources */,
 				B0481ED32B225DAD004BC15B /* BuildingsDataModel.swift in Sources */,
 				B0481ECA2B225C9A004BC15B /* HeroSectionView.swift in Sources */,
 				B0481ED52B225E00004BC15B /* CategoriesDataModel.swift in Sources */,
@@ -375,6 +397,8 @@
 				DEVELOPMENT_TEAM = 92MS8TF83L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "regu0005-mad9137-final-project/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Doors Open Ottawa";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -404,6 +428,8 @@
 				DEVELOPMENT_TEAM = 92MS8TF83L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "regu0005-mad9137-final-project/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Doors Open Ottawa";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
