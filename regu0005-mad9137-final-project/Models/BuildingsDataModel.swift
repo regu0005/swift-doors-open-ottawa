@@ -165,6 +165,10 @@ class BuildingsDataModel: ObservableObject {
             return nameMatch && amenitiesMatch
         }
     }
+    
+    func sortBuildingsByDistance() {
+        self.buildings.sort { ($0.distance ?? Double.infinity) < ($1.distance ?? Double.infinity) }
+    }
 }
 
 extension Double {

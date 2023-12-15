@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct SearchBuildingsView: View {
     @ObservedObject var buildingsDataModel : BuildingsDataModel
@@ -19,6 +20,16 @@ struct SearchBuildingsView: View {
     @State private var showingFilterSheet = false
     @State private var flagApplyFilter = false
     @State private var filteredBuildings: [PostBuilding] = []
+    
+    @State private var distanceOrder: DistanceOrder = .closestToFarthest
+
+    
+    func formattedDistance(distance: CLLocationDistance?) -> String {
+        guard let distance = distance else {
+            return "N/A Km"
+        }
+        return String(format: "%.2f Km", distance)
+    }
     
     var body: some View {
         ScrollView{
@@ -53,7 +64,7 @@ struct SearchBuildingsView: View {
                 }
                 .padding(.trailing, 20)
                 .sheet(isPresented: $showingFilterSheet) {
-                    FilterView(amenitiesDataModel: amenitiesDataModel, buildingsDataModel: buildingsDataModel, isPresented: $showingFilterSheet, onFiltersChanged: onFiltersChanged)
+                    FilterView(amenitiesDataModel: amenitiesDataModel, buildingsDataModel: buildingsDataModel, isPresented: $showingFilterSheet, distanceOrder: $distanceOrder, onFiltersChanged: onFiltersChanged)
                 }
             }
             
@@ -69,7 +80,7 @@ struct SearchBuildingsView: View {
                                 Text("Address: \(building.address)")
                                     .font(.subheadline)
                                     .foregroundColor(textColorDetails)
-                                Text("Website: \(building.website)")
+                                Text("Distance: \(formattedDistance(distance: building.distance))")
                                     .font(.subheadline)
                                     .foregroundColor(textColorDetails)
                             }
@@ -96,14 +107,24 @@ struct SearchBuildingsView: View {
     }
     
     func updateFilteredBuildings() {
-        let result = buildingsDataModel.filterBuildings(
+        // Filter by amenities and searchtext
+        var result = buildingsDataModel.filterBuildings(
             selectedAmenities: amenitiesDataModel.selectedAmenities,
             searchText: searchText
         )
 
+        // Sort by distance
+        switch distanceOrder {
+            case .closestToFarthest:
+                result.sort { ($0.distance ?? Double.infinity) < ($1.distance ?? Double.infinity) }
+            case .farthestToClosest:
+                result.sort { ($0.distance ?? Double.infinity) > ($1.distance ?? Double.infinity) }
+            }
+
         DispatchQueue.main.async {
-            self.buildingsDataModel.filteredBuildingsCount = result.count
-        }
+                self.filteredBuildings = result
+                self.buildingsDataModel.filteredBuildingsCount = result.count
+            }
 
         self.filteredBuildings = result
     }

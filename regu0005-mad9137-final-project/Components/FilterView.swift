@@ -12,17 +12,32 @@ struct FilterView: View {
     @ObservedObject var buildingsDataModel : BuildingsDataModel
     @Binding var isPresented: Bool
     @State private var optionEnabled = false
+    @Binding var distanceOrder: DistanceOrder
+
     var onFiltersChanged: () -> Void
     
+
     var body: some View {
         NavigationView {
                     List {
-                        Section(header: Text("Sort").font(.title3).bold()) {
-                            Toggle("Most Visited", isOn: $optionEnabled).disabled(true)
-                            Toggle("Closest", isOn: $optionEnabled).disabled(true)
+                        Section(header: Text("Sort by Distance").font(.title3).bold()) {
+                            Picker("Distance Order", selection: $distanceOrder) {
+                                Text("Closest to Farthest")
+                                    .tag(DistanceOrder.closestToFarthest)
+                                    .frame(height: 44)
+                                Text("Farthest to Closest")
+                                    .tag(DistanceOrder.farthestToClosest)
+                                    .frame(height: 44)
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                            .onChange(of: distanceOrder) { oldValue, newValue in
+                                if oldValue != newValue {
+                                    onFiltersChanged()
+                                }
+                            }
                         }
 
-                        Section(header: Text("Amenities").font(.title3).bold()) {
+                        Section(header: Text("Sort by Amenities").font(.title3).bold()) {
                             ForEach(amenitiesDataModel.amenities) { amenity in
                                 Toggle(amenity.amenity, isOn: Binding(
                                     get: { amenitiesDataModel.selectedAmenities.contains(amenity.id) },
@@ -70,6 +85,23 @@ struct FilterView: View {
                 onFiltersChanged()
                 print("Amenities filter applied")
             }
+        }
+    }
+}
+
+enum DistanceOrder {
+    case closestToFarthest
+    case farthestToClosest
+}
+
+struct RadioButton: View {
+    var label: String
+    var isSelected: Bool
+
+    var body: some View {
+        HStack {
+            Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
+            Text(label)
         }
     }
 }
