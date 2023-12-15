@@ -16,7 +16,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        // locationManager.requestAlwaysAuthorization() // update the location all the time
+        // TODO the follow line update the location all the time
+        // this will be for a new version that update continously the distance of each building when the user is moving
+        // locationManager.requestAlwaysAuthorization()
     }
 
     func startUpdatingLocation() {
@@ -27,7 +29,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         if let location = locations.last {
             currentLocation = location.coordinate
 //            print("Current Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-            print("Current Location::: \(currentLocation!.latitude), \(currentLocation!.longitude)")
+//            print("Current Location::: \(currentLocation!.latitude), \(currentLocation!.longitude)")
         }
     }
 

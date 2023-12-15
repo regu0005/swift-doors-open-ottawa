@@ -19,6 +19,7 @@ struct ContentView: View {
     @StateObject var favoritesManagerModel = FavoritesManagerModel()
         
     @EnvironmentObject var networkMonitor: NetworkMonitor
+//    @StateObject var locationManager = LocationManager()
     
     var body: some View {
         
@@ -92,6 +93,9 @@ struct ContentView: View {
                         }
                 }
                 .edgesIgnoringSafeArea(.all)
+//                .onAppear {
+//                       locationManager.startUpdatingLocation()
+//                   }
     } // end body view
 }
 

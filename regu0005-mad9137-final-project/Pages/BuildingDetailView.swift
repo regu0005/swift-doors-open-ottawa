@@ -94,16 +94,6 @@ struct BuildingDetailView: View {
                     .edgesIgnoringSafeArea(.all)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             
-//                        Button(action: {
-//                            favoritesManagerModel.toggleFavorite(buildingID: building.id)
-//                        }) {
-//                            Image(systemName: favoritesManagerModel.favorites[building.id, default: false] ? "heart.fill" : "heart")
-//                                .foregroundColor(.red)
-//                                .font(.system(size: 30))
-//                                .padding(.top, 190)
-//                                .padding(.trailing, 10)
-//                                .padding(.trailing)
-//                        }
                     Button(action: {
                         favoritesManagerModel.toggleFavorite(buildingID: building.id)
                     }) {

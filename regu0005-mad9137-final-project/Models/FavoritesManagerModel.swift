@@ -24,7 +24,7 @@ class FavoritesManagerModel: ObservableObject {
     
     func getFavorites() -> [Int: Bool] {
         return favorites.filter { $0.value == true }
-                        // Reduce.- Create the dictionary of the filtered array, this is in tuples
+                        // Reduce: Create the dictionary of the filtered array in tuples
                         .reduce(into: [Int: Bool]()) { result, current in
                             result[current.key] = current.value
                         }

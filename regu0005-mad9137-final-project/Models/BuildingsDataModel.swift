@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import Combine
+import CoreLocation
 
 struct Schedule: Codable {
     var id: Int
@@ -56,6 +57,7 @@ struct PostBuilding: Codable, Identifiable {
     var idCategory: Int
     var category: String
     var visits: Int
+    var distance: CLLocationDistance?
     var schedules: [Schedule]?
     var amenities: [Amenity]?
 
@@ -71,10 +73,38 @@ class BuildingsDataModel: ObservableObject {
     @Published var filteredBuildingsCount: Int = 0 
     @Published var randomBuildings: [PostBuilding] = []
     
+    var locationManager = LocationManager()
+    
     init() {
+        locationManager.startUpdatingLocation()
         fetchBuildingsData()
     }
 
+    
+    private func calculateDistance(for building: inout PostBuilding) {
+//            print("Calculating distance for \(building.name)")
+//            print("User location: \(String(describing: locationManager.currentLocation))")
+//            print("Building latitude: \(building.latitude ?? "nil"), longitude: \(building.longitude ?? "nil")")
+    
+            guard let userLocation = locationManager.currentLocation,
+                  let buildingLat = Double(building.latitude ?? ""),
+                  let buildingLon = Double(building.longitude ?? "") else {
+//                print("Failed to get valid location data for \(building.name)")
+                building.distance = nil
+                return
+            }
+    
+            let buildingLocation = CLLocation(latitude: buildingLat, longitude: buildingLon)
+            let userCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+            let distanceInMeters = userCLLocation.distance(from: buildingLocation)
+
+            // Convert meters to kilometers and round to two decimal places
+            let distanceInKilometers = (distanceInMeters / 1000).rounded(toPlaces: 2)
+            building.distance = distanceInKilometers
+    
+//            print("Calculated distance for \(building.name): \(distanceInKilometers) kilometers")
+    }
+        
     private func fetchBuildingsData() {
 //        guard let url = URL(string: "https://buildings.tusmodelos.com/api_buildings?limit=50") else { return }
         guard let url = URL(string: "https://buildings.tusmodelos.com/api_buildings") else { return }
@@ -88,12 +118,17 @@ class BuildingsDataModel: ObservableObject {
                 return
             }
             do {
-                let decodedBuildings = try JSONDecoder().decode([PostBuilding].self, from: data)
+                var decodedBuildings = try JSONDecoder().decode([PostBuilding].self, from: data)
+                decodedBuildings = decodedBuildings.map { var building = $0
+                                                self?.calculateDistance(for: &building)
+                                                return building
+                                            }
                 DispatchQueue.main.async {
                     self?.buildings = decodedBuildings
                     self?.isLoading = false
                     // print("Buildings: \(String(describing: self?.buildings))")
                     self?.updateRandomBuildings()
+                    
                 }
             } catch {
                 print("Error decoding JSON: \(error.localizedDescription)")
@@ -129,5 +164,13 @@ class BuildingsDataModel: ObservableObject {
 
             return nameMatch && amenitiesMatch
         }
+    }
+}
+
+extension Double {
+    /// Rounds the double to 'places' decimal places.
+    func rounded(toPlaces places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
     }
 }

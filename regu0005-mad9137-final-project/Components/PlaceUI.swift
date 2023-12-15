@@ -13,17 +13,23 @@ struct PlaceUI: View {
     var description: String
     var image: String
     var visits: Int
+    var distance: Double
     
     @State private var imageOpacity = 0.0
     @State private var isMainImageLoaded = false
 
-    init(title: String, description: String, visits: Int ,image: String) {
+    init(title: String, description: String, visits: Int, image: String, distance: Double) {
 
         self.title = title
         self.description = description
         self.visits = visits
         self.image = image
+        self.distance = distance
     }
+    
+    var formattedDistance: String {
+            String(format: "%.2f Km.", distance)
+        }
     
     var body: some View {
         HStack {
@@ -45,7 +51,7 @@ struct PlaceUI: View {
                                 ProgressView("...")
                                     .font(.headline)
                                     .bold()
-    //                        Image("world_default")
+    //                        Image("placeholder_image")
     //                            .resizable()
     //                            .aspectRatio(contentMode: .fill)
                         case .success(let image):
@@ -146,23 +152,17 @@ struct PlaceUI: View {
             VStack (alignment: .trailing ){
 
                 HStack{
-
                     Spacer()
-
                     Image(systemName: "binoculars.fill")
-
-                    Image(systemName: "fork.knife")
-
+                    Text(formattedDistance)
                 }
             }
             .foregroundColor(.gray)
             .padding(.bottom, 16)
         }
     }
-
 }
 
 #Preview {
-    //PlaceUI()
-    PlaceUI(title: "demo", description: "test", visits: 123, image: "placeholder_image")
+    PlaceUI(title: "demo", description: "test", visits: 123, image: "placeholder_image", distance: 10.5)
 }

@@ -36,7 +36,8 @@ struct FavoritesBuildingsView: View {
                                 title: building.name,
                                 description: building.address,
                                 visits: building.visits,
-                                image: building.image!
+                                image: building.image!,
+                                distance: building.distance!
                             )
     
                             Button(action: {
