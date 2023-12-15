@@ -29,8 +29,8 @@ struct Amenity: Codable {
     let id: Int
     var amenity: String
     var value: Int
-    var icon: String
-    var description: String
+    var icon: String?
+    var description: String?
     var keyword: String
     var comment: String?
 

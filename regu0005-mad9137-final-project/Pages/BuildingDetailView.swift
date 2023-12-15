@@ -124,7 +124,7 @@ struct BuildingDetailView: View {
                 }
                 .padding(.top,0)
                 
-                HStack {
+                HStack(alignment: .top) {
                     Text("Website:")
                             .font(Font.system(size: 16))
                             .frame(maxWidth: 70, alignment: .leading)
@@ -139,37 +139,61 @@ struct BuildingDetailView: View {
                             .foregroundColor(.gray)
                     Spacer()
                 }
-                HStack {
-                    Text("Email:")
+                if let email = building.email, !email.isEmpty {
+                    HStack(alignment: .top) {
+                        Text("Email:")
                             .font(Font.system(size: 16))
                             .frame(maxWidth: 70, alignment: .leading)
                             .padding(.top,1)
                             .padding(.leading,30)
                             .foregroundColor(.gray)
-                    Text(building.email ?? "")
+                        Text(email)
                             .font(Font.system(size: 16))
                             .frame(alignment: .leading)
                             .padding(.horizontal)
                             .padding(.top,1)
                             .foregroundColor(.gray)
-                    Spacer()
+                        Spacer()
+                    }
                 }
-                HStack {
-                    Text("Phone:")
+
+                if let phoneNumber = building.phoneNumber, !phoneNumber.isEmpty {
+                    HStack(alignment: .top) {
+                        Text("Phone:")
                             .font(Font.system(size: 16))
                             .frame(maxWidth: 70, alignment: .leading)
                             .padding(.top,1)
                             .padding(.leading,30)
                             .foregroundColor(.gray)
-                    Text(building.phoneNumber ?? "")
+                        Text(phoneNumber)
                             .font(Font.system(size: 16))
                             .frame(alignment: .leading)
                             .padding(.horizontal)
                             .padding(.top,1)
                             .foregroundColor(.gray)
-                    Spacer()
+                        Spacer()
+                    }
                 }
-                HStack {
+                
+                if let cellphoneNumber = building.cellphoneNumber, !cellphoneNumber.isEmpty {
+                    HStack(alignment: .top) {
+                        Text("Cell Phone:")
+                            .font(Font.system(size: 16))
+                            .frame(maxWidth: 70, alignment: .leading)
+                            .padding(.top,1)
+                            .padding(.leading,30)
+                            .foregroundColor(.gray)
+                        Text(cellphoneNumber)
+                            .font(Font.system(size: 16))
+                            .frame(alignment: .leading)
+                            .padding(.horizontal)
+                            .padding(.top,1)
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                }
+                
+                HStack(alignment: .top) {
                     Text("Address:")
                             .font(Font.system(size: 16))
                             .frame(maxWidth: 70, alignment: .leading)
@@ -184,6 +208,23 @@ struct BuildingDetailView: View {
                             .foregroundColor(.gray)
                     Spacer()
                 }
+                
+                HStack(alignment: .top) {
+                    Text("Picture:")
+                            .font(Font.system(size: 16))
+                            .frame(maxWidth: 70, alignment: .leading)
+                            .padding(.top,1)
+                            .padding(.leading,30)
+                            .foregroundColor(.gray)
+                    Text(building.imageDescription!)
+                            .font(Font.system(size: 14))
+                            .frame(alignment: .leading)
+                            .padding(.horizontal)
+                            .padding(.top,1)
+                            .foregroundColor(.gray)
+                    Spacer()
+                }
+                    
                 VStack{
                     HStack {
                         Text("Description")
@@ -253,13 +294,15 @@ struct BuildingDetailView: View {
                                 amenityView(amenity)
                             }
                         }
+                        .padding(.horizontal,40)
                     } else {
                         HStack(alignment: .top, spacing: 20) {
 
                             ForEach(Array(building.amenities!.prefix(2)), id: \.id) { amenity in
-                                amenityView(amenity)
+                                amenityViewBasic(amenity)
                             }
                         }
+                        .padding(.horizontal,20)
                     }
                 }
                 
@@ -309,17 +352,84 @@ struct BuildingDetailView: View {
         } // end scroll view
     } // end body view
     
-    func amenityView(_ amenity: Amenity) -> some View {
-            HStack(spacing: 8) {
+    func amenityViewBasic(_ amenity: Amenity) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                if let iconURL = amenity.icon, let url = URL(string: iconURL) { 
+                    AsyncImage(url: url) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                                .frame(width: 24, height: 24)
+                        case .success(let image):
+                            image.resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 24, height: 24)
+                        case .failure:
+                            Image(systemName: "photo")
+                                .frame(width: 24, height: 24)
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
+                } else {
+                    Image(systemName: "photo")
+                        .frame(width: 24, height: 24)
+                }
+
                 Text(amenity.amenity)
                     .font(Font.system(size: 14))
-                    .lineSpacing(24)
                     .foregroundColor(Color(red: 0.10, green: 0.13, blue: 0.17))
             }
-            .frame(width: 126, height: 38)
-            .background(Color(red: 0.89, green: 0.91, blue: 0.94))
-            .cornerRadius(6)
+        }
+        .padding()
+        .background(Color(red: 0.89, green: 0.91, blue: 0.94))
+        .cornerRadius(6)
     }
+
+    func amenityView(_ amenity: Amenity) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                if let iconURL = amenity.icon, let url = URL(string: iconURL) {
+                    AsyncImage(url: url) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                                .frame(width: 24, height: 24)
+                        case .success(let image):
+                            image.resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 24, height: 24)
+                        case .failure:
+                            Image(systemName: "photo")
+                                .frame(width: 24, height: 24)
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
+                } else {
+                    Image(systemName: "photo")
+                        .frame(width: 24, height: 24)
+                }
+
+                Text(amenity.amenity)
+                    .font(Font.system(size: 14))
+                    .foregroundColor(Color(red: 0.10, green: 0.13, blue: 0.17))
+            }
+
+            if let description = amenity.description {
+                Text(description)
+                    .font(Font.system(size: 12))
+                    .foregroundColor(Color.gray)
+                    .lineLimit(nil)
+            }
+        }
+        .padding()
+        .frame(width: 340)
+        .background(Color(red: 0.89, green: 0.91, blue: 0.94))
+        .cornerRadius(6)
+    }
+
     
     func getAvailableDays(schedule: Schedule) -> String {
         var days = [String]()

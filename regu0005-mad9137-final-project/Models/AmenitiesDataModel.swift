@@ -52,7 +52,7 @@ class AmenitiesDataModel: ObservableObject {
                     }
                     self?.isLoading = false
                     
-//                    print("Amenities: \(String(describing: self?.amenities))")
+                    print("Amenities: \(String(describing: self?.amenities))")
                 }
             } catch {
                 print("Error decoding JSON: \(error.localizedDescription)")

@@ -47,9 +47,11 @@ struct SearchBuildingsView: View {
                         .padding(.leading, 8)
                     
                     TextField("Search for a building", text: $searchText)
+                        .textInputAutocapitalization(.none)
                         .onSubmit {
                                 updateFilteredBuildings()
                             }
+                        .submitLabel(.search)
                 }
                 .padding(7)
                 .background(Color(.systemGray6))
