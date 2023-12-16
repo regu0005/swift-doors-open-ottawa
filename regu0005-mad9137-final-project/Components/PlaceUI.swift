@@ -51,9 +51,6 @@ struct PlaceUI: View {
                                 ProgressView("...")
                                     .font(.headline)
                                     .bold()
-    //                        Image("placeholder_image")
-    //                            .resizable()
-    //                            .aspectRatio(contentMode: .fill)
                         case .success(let image):
                             image.resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -79,21 +76,11 @@ struct PlaceUI: View {
                     .frame(maxWidth: .infinity, maxHeight: 200)
                     .clipped()
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 6)
-                    
-//
                 }
                 .frame(maxWidth: .infinity, maxHeight: 200)
 
                 cardText.padding(.horizontal, 14)
             }
-
-//            .onTapGesture(count: 2) {
-//                print("Tapped 2")
-//            }
-
-//            .onLongPressGesture(){
-//                print("Long press")
-//            }
 
             .background(Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 16))
@@ -113,41 +100,42 @@ struct PlaceUI: View {
             HStack{
 
                 Text(title)
-                    .font(.headline)
+                    .font(Font.system(size: 16))
                     .padding(.bottom,2)
                     .foregroundColor(.black)
 
                 Spacer()
 
-                VStack{
-
-                    HStack{
-                        
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 12))
-
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 12))
-
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 12))
-
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 12))
-
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 12))
-
-                    }
-
-                    Text("Visits: \(visits)")
-                        .font(.system(size: 14))
-                }
-                .foregroundColor(Color.orange)
+//                VStack{
+//
+//                    HStack{
+//                        
+//                        Image(systemName: "star.fill")
+//                            .font(.system(size: 12))
+//
+//                        Image(systemName: "star.fill")
+//                            .font(.system(size: 12))
+//
+//                        Image(systemName: "star.fill")
+//                            .font(.system(size: 12))
+//
+//                        Image(systemName: "star.fill")
+//                            .font(.system(size: 12))
+//
+//                        Image(systemName: "star.fill")
+//                            .font(.system(size: 12))
+//
+//                    }
+//
+//                    Text("Visits: \(visits)")
+//                        .font(.system(size: 14))
+//                }
+//                .foregroundColor(Color.orange)
             }
 
             Text(description)
                 .foregroundColor(.black)
+                .font(Font.system(size: 12))
 
             VStack (alignment: .trailing ){
 
@@ -155,6 +143,7 @@ struct PlaceUI: View {
                     Spacer()
                     Image(systemName: "binoculars.fill")
                     Text(formattedDistance)
+                        .font(Font.system(size: 12))
                 }
             }
             .foregroundColor(.gray)

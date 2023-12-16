@@ -30,7 +30,7 @@ struct RandomBuildingsView: View {
             }
             
             if buildingsDataModel.randomBuildings.isEmpty {
-                            Text("Cargando edificios...")
+                            Text("Loading Buildings...")
             }
             else {
                 ForEach(buildingsDataModel.randomBuildings, id: \.id) { building in
@@ -66,7 +66,3 @@ struct RandomBuildingsView: View {
         .padding(.bottom,60)
     }
 }
-
-//#Preview {
-//    RandomBuildingsView(buildingsDataModel: BuildingsDataModel())
-//}

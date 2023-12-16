@@ -75,21 +75,19 @@ class BuildingsDataModel: ObservableObject {
     
     var locationManager = LocationManager()
     
+    private var selectedLanguage: String
+    
     init() {
+        self.selectedLanguage = "en"
         locationManager.startUpdatingLocation()
         fetchBuildingsData()
     }
-
     
     private func calculateDistance(for building: inout PostBuilding) {
-//            print("Calculating distance for \(building.name)")
-//            print("User location: \(String(describing: locationManager.currentLocation))")
-//            print("Building latitude: \(building.latitude ?? "nil"), longitude: \(building.longitude ?? "nil")")
     
             guard let userLocation = locationManager.currentLocation,
                   let buildingLat = Double(building.latitude ?? ""),
                   let buildingLon = Double(building.longitude ?? "") else {
-//                print("Failed to get valid location data for \(building.name)")
                 building.distance = nil
                 return
             }
@@ -101,13 +99,11 @@ class BuildingsDataModel: ObservableObject {
             // Convert meters to kilometers and round to two decimal places
             let distanceInKilometers = (distanceInMeters / 1000).rounded(toPlaces: 2)
             building.distance = distanceInKilometers
-    
-//            print("Calculated distance for \(building.name): \(distanceInKilometers) kilometers")
     }
         
     private func fetchBuildingsData() {
-//        guard let url = URL(string: "https://buildings.tusmodelos.com/api_buildings?limit=50") else { return }
-        guard let url = URL(string: "https://buildings.tusmodelos.com/api_buildings") else { return }
+        let urlString = "https://buildings.tusmodelos.com/api_buildings/?lang=\(selectedLanguage)"
+        guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             if let error = error {
                 print("Network error: \(error.localizedDescription)")
@@ -169,10 +165,19 @@ class BuildingsDataModel: ObservableObject {
     func sortBuildingsByDistance() {
         self.buildings.sort { ($0.distance ?? Double.infinity) < ($1.distance ?? Double.infinity) }
     }
+    
+    func changeLanguage(to newLanguage: String) {
+            selectedLanguage = newLanguage
+            fetchBuildingsData() 
+    }
+    
+    func filterBuildingsByCategory(idCategory: Int) -> [PostBuilding] {
+            return buildings.filter { $0.idCategory == idCategory }
+    }
 }
 
 extension Double {
-    /// Rounds the double to 'places' decimal places.
+    // Rounds the double to 'places' decimal places.
     func rounded(toPlaces places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor

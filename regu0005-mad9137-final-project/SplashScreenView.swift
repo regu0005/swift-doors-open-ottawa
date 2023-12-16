@@ -25,7 +25,7 @@ struct SplashScreenView: View {
                 
                 VStack {
                     VStack {
-                        Image("ic_logo")
+                        Image("logo")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 180, height: 180)

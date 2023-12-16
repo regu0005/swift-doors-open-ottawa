@@ -9,7 +9,14 @@ import SwiftUI
 
 struct CategoriesScrollView: View {
     @ObservedObject var categoriesDataModel : CategoriesDataModel
+    @ObservedObject var buildingsDataModel : BuildingsDataModel
+    @ObservedObject var amenitiesDataModel : AmenitiesDataModel
+    @ObservedObject var favoritesManagerModel: FavoritesManagerModel
+    
+    var networkMonitor: NetworkMonitor
     @Environment(\.colorScheme) var colorScheme
+    @State private var selectedCategoryId: Int?
+    @State private var isNavigationActive = false
     
     // Constants for layout
     let gridSpacing:    CGFloat = 20
@@ -31,29 +38,37 @@ struct CategoriesScrollView: View {
                     
                 }.padding(.top, 15)
             
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
-                
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
                     ForEach(categoriesDataModel.categories, id: \.id) { category in
-                                    
-                                    VStack() {
-                                        Spacer()
-                                        Text(category.category)
-                                            .font(Font.system(size: 14))
-                                            .multilineTextAlignment(.center)
-                                            .padding(.horizontal)
-                                        Spacer()
-                                    }
-                                    .padding(.top, 5)
-                                    .frame(width: cardWidth, height: cardHeight)
-                                    .background(Color.white)
-                                    .cornerRadius(10)
-//                                    .shadow(radius: 1)
-                                    .shadow(color: Color.black.opacity(0.09), radius: 5, x: 0, y: 2)
-                                
+                        Button(action: {
+                            selectedCategoryId = category.id
+                            isNavigationActive = true
+                        }) {
+                            VStack() {
+                                Spacer()
+                                Text(category.category)
+                                    .font(Font.system(size: 14))
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal)
+                                Spacer()
                             }
-                            .padding(.bottom, 5)
+                            .padding(.top, 5)
+                            .frame(width: cardWidth, height: cardHeight)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(color: Color.black.opacity(0.09), radius: 5, x: 0, y: 2)
+                        }
+                    }
+                    .padding(.bottom, 5)
                 } // lazyVGrid
                 .padding(.horizontal)
+            
+                if let selectedCategoryId = selectedCategoryId {
+                    NavigationLink(destination: BuildingsByCategoryView(buildingsDataModel: buildingsDataModel, amenitiesDataModel: amenitiesDataModel, favoritesManagerModel: favoritesManagerModel, networkMonitor: networkMonitor, categoryId: selectedCategoryId), isActive: $isNavigationActive) {
+                        EmptyView()
+                    }
+                    .hidden()
+                }
         } // VStack
         .padding(.horizontal)
         
@@ -62,8 +77,4 @@ struct CategoriesScrollView: View {
     var textColor: Color {
         return colorScheme == .dark ? .gray : .secondary
     }
-}
-
-#Preview {
-    CategoriesScrollView(categoriesDataModel:CategoriesDataModel())
 }

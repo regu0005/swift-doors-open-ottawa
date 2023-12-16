@@ -33,7 +33,6 @@ struct HeroSectionView: View {
                             .onAppear {
                                 imageLoadState = .loading
                                 imageScale = 1.0
-//                                print("loading empty...");
                             }
 
                     case .success(let image):
@@ -46,7 +45,6 @@ struct HeroSectionView: View {
                                     withAnimation(.easeIn(duration: 4.2)) {
                                         imageScale = 1.1
                                         imageLoadState = .loaded
-//                                        print("loading success...")
                                     }
                                 }
                             }

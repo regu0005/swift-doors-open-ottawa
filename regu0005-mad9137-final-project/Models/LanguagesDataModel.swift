@@ -21,8 +21,10 @@ struct Language: Codable, Identifiable {
 class LanguagesDataModel: ObservableObject {
     @Published var languages: [Language] = []
     @Published var isLoading = true
+    @Published var selectedLanguage: String
 
     init() {
+        self.selectedLanguage = UserDefaults.standard.string(forKey: "SelectedLanguage") ?? "en" // "en" default language
         fetchLanguagesData()
     }
 
@@ -42,11 +44,22 @@ class LanguagesDataModel: ObservableObject {
                 DispatchQueue.main.async {
                     self?.languages = decodedLanguages
                     self?.isLoading = false
-                    //print("Languages: \(String(describing: self?.languages))")
                 }
             } catch {
                 print("Error decoding JSON: \(error.localizedDescription)")
             }
         }.resume()
+    }
+    
+    func getDefaultLanguage() -> Language? {
+        return languages.first
+    }
+    
+    func setSelectedLanguage(_ abbreviation: String) {
+        if let language = languages.first(where: {$0.abbreviation == abbreviation}) {
+            selectedLanguage = language.abbreviation
+            UserDefaults.standard.set(language.abbreviation, forKey: "SelectedLanguage")
+            print("Current Language: \(selectedLanguage)")
+        }
     }
 }

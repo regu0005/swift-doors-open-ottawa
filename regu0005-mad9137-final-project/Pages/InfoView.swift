@@ -41,7 +41,7 @@ struct InfoView: View {
                     .font(Font.system(size: 14))
             }
         }
-        .navigationBarTitle("Developer about", displayMode: .inline)
+        .navigationBarTitle("About Developer", displayMode: .inline)
     }
 }
 

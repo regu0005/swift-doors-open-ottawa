@@ -17,6 +17,8 @@ struct ContentView: View {
     @StateObject var amenitiesDataModel = AmenitiesDataModel()
     @StateObject var languagesDataModel = LanguagesDataModel()
     @StateObject var favoritesManagerModel = FavoritesManagerModel()
+    
+    @ObservedObject var languageSettings = LanguageSettings()
         
     @EnvironmentObject var networkMonitor: NetworkMonitor
     
@@ -36,11 +38,11 @@ struct ContentView: View {
                                 VStack {
                                     ScrollView {
                                         HeroSectionView(buildingsDataModel:buildingsDataModel)
-                                        CategoriesScrollView(categoriesDataModel: categoriesDataModel)
                                         
-                                        //NavigationView {
+                                        CategoriesScrollView(categoriesDataModel: categoriesDataModel, buildingsDataModel: buildingsDataModel, amenitiesDataModel: amenitiesDataModel, favoritesManagerModel: favoritesManagerModel, networkMonitor: networkMonitor)
+
                                         RandomBuildingsView(buildingsDataModel: buildingsDataModel, amenitiesDataModel: amenitiesDataModel, favoritesManagerModel: favoritesManagerModel, networkMonitor: networkMonitor)
-                                        //}
+                                        
                                         BuildingsByAmenitiesView()
                                     }
                                 }
@@ -81,11 +83,11 @@ struct ContentView: View {
                             }
                             .padding(.top, 10)
                         }
-                    // About Tab
-                    InfoView()
+                    // More... Tab
+                    OthersView(languagesDataModel: languagesDataModel, buildingsDataModel: buildingsDataModel, amenitiesDataModel: amenitiesDataModel, categoriesDataModel: categoriesDataModel)
                         .tabItem {
                             VStack{
-                                Label("About", systemImage: "info.circle")
+                                Label("More", systemImage: "info.circle")
                             }
                             .padding(.top, 10)
                         }

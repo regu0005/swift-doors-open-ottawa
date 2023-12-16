@@ -28,8 +28,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             currentLocation = location.coordinate
-//            print("Current Location: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-//            print("Current Location::: \(currentLocation!.latitude), \(currentLocation!.longitude)")
         }
     }
 

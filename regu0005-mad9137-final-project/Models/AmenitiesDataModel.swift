@@ -27,12 +27,16 @@ class AmenitiesDataModel: ObservableObject {
 
     @Published var selectedAmenities: Set<Int> = []
     
+    private var selectedLanguage: String
+    
     init() {
+        self.selectedLanguage = "en"
         fetchAmenitiesData()
     }
 
     private func fetchAmenitiesData() {
-        guard let url = URL(string: "https://buildings.tusmodelos.com/api_amenities") else { return }
+        let urlString = "https://buildings.tusmodelos.com/api_amenities/?lang=\(selectedLanguage)"
+        guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             if let error = error {
                 print("Network error: \(error.localizedDescription)")
@@ -51,12 +55,15 @@ class AmenitiesDataModel: ObservableObject {
                         self?.selectedAmenities = Set(decodedAmenities.map { $0.id })
                     }
                     self?.isLoading = false
-                    
-                    print("Amenities: \(String(describing: self?.amenities))")
                 }
             } catch {
                 print("Error decoding JSON: \(error.localizedDescription)")
             }
         }.resume()
+    }
+    
+    func changeLanguage(to newLanguage: String) {
+        selectedLanguage = newLanguage
+        fetchAmenitiesData()
     }
 }

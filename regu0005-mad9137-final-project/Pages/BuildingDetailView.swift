@@ -63,9 +63,6 @@ struct BuildingDetailView: View {
                         
                         switch phase {
                         case .empty:
-//                            ProgressView("...")
-//                                .font(.headline)
-//                                .bold()
                             Image("placeholder_image")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
