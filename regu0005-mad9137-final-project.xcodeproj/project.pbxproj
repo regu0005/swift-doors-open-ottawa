@@ -17,7 +17,6 @@
 		B0481EB52B2246CB004BC15B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0481EB42B2246CB004BC15B /* ContentView.swift */; };
 		B0481EB72B2246CD004BC15B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0481EB62B2246CD004BC15B /* Assets.xcassets */; };
 		B0481EBA2B2246CD004BC15B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0481EB92B2246CD004BC15B /* Preview Assets.xcassets */; };
-		B0481EC42B224B57004BC15B /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0481EC32B224B57004BC15B /* NetworkMonitor.swift */; };
 		B0481EC62B224B73004BC15B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0481EC52B224B73004BC15B /* SplashScreenView.swift */; };
 		B0481EC82B224BD7004BC15B /* NetUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0481EC72B224BD7004BC15B /* NetUI.swift */; };
 		B0481ECA2B225C9A004BC15B /* HeroSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0481EC92B225C9A004BC15B /* HeroSectionView.swift */; };
@@ -51,7 +50,6 @@
 		B0481EB42B2246CB004BC15B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B0481EB62B2246CD004BC15B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0481EB92B2246CD004BC15B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B0481EC32B224B57004BC15B /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkMonitor.swift; path = ../../../NetworkMonitor.swift; sourceTree = "<group>"; };
 		B0481EC52B224B73004BC15B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		B0481EC72B224BD7004BC15B /* NetUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetUI.swift; sourceTree = "<group>"; };
 		B0481EC92B225C9A004BC15B /* HeroSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroSectionView.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 		B0481EC22B224B2B004BC15B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B0481EC32B224B57004BC15B /* NetworkMonitor.swift */,
 				B0F500FA2B2BFD6900A58731 /* LocationManager.swift */,
 				B0F1513E2B2E4E740033C51D /* NetworkMonitorService.swift */,
 			);
@@ -270,7 +267,6 @@
 				B03CDC572B24FACE00993658 /* AmenitiesDataModel.swift in Sources */,
 				B0F1513D2B2E42FA0033C51D /* TruncateString.swift in Sources */,
 				B03CDC512B240C5A00993658 /* FavoritesBuildingsView.swift in Sources */,
-				B0481EC42B224B57004BC15B /* NetworkMonitor.swift in Sources */,
 				B0CAB0222B2685FB00131B31 /* BuildingDetailView.swift in Sources */,
 				B08DAB252B2D29C400625A98 /* OthersView.swift in Sources */,
 				B0481EC82B224BD7004BC15B /* NetUI.swift in Sources */,
