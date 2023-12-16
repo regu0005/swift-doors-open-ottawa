@@ -64,7 +64,7 @@ struct ContentView: View {
                             .padding(.top, 10)
                         }
                     // Map Tab
-                    MapBuildingsContainerView(buildingsDataModel: BuildingsDataModel())
+                    MapBuildingsContainerView(buildingsDataModel: buildingsDataModel, amenitiesDataModel: amenitiesDataModel, favoritesManagerModel: favoritesManagerModel, networkMonitor: networkMonitor)
                         .tabItem {
                             VStack {
                                 Label("Map", systemImage: "map")

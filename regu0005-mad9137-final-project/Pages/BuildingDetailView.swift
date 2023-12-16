@@ -36,6 +36,8 @@ struct BuildingDetailView: View {
     var networkMonitor: NetworkMonitor
     var building: PostBuilding
     
+    var onDisappear: (() -> Void)?
+    
     @State private var isFavorite: Bool = false
     @State private var isMapFullscreen = false
     @State private var isMainImageLoaded = false
@@ -350,6 +352,9 @@ struct BuildingDetailView: View {
                
             }
         } // end scroll view
+        .onDisappear {
+            self.onDisappear?()
+        }
     } // end body view
     
     func amenityViewBasic(_ amenity: Amenity) -> some View {
