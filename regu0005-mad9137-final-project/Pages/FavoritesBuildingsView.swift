@@ -40,6 +40,19 @@ struct FavoritesBuildingsView: View {
                                 distance: building.distance!
                             )
     
+                            ShareLink(
+                                Text(""),
+                                item: "logo",
+                                subject: Text(building.name),
+                                message: Text("\(building.name) .- \(building.description!)"),
+                                preview: SharePreview(Text(building.name))
+                            )
+                            .font(.system(size: 30))
+                            .padding(.trailing, 64)
+                            .padding(.top, 148)
+                            .padding(.horizontal,14)
+                            .foregroundColor(.white)
+                            
                             Button(action: {
                                 favoritesManagerModel.toggleFavorite(buildingID: building.id)
                             }) {

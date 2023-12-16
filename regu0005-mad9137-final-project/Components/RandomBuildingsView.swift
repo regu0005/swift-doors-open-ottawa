@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct RandomBuildingsView: View {
     @ObservedObject var buildingsDataModel : BuildingsDataModel
     @ObservedObject var amenitiesDataModel : AmenitiesDataModel
@@ -14,6 +15,7 @@ struct RandomBuildingsView: View {
     var networkMonitor: NetworkMonitor
     
     @Environment(\.colorScheme) var colorScheme
+    @State private var photo = Photo(img: Image("logo"), caption: "building name", subject: "building category", description: "description")
     
     var body: some View {
         
@@ -36,6 +38,8 @@ struct RandomBuildingsView: View {
                 ForEach(buildingsDataModel.randomBuildings, id: \.id) { building in
 
                     NavigationLink(destination: BuildingDetailView(buildingsDataModel: buildingsDataModel, amenitiesDataModel: amenitiesDataModel, favoritesManagerModel: favoritesManagerModel, networkMonitor: networkMonitor, building: building)) {
+                        
+                        
                         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
                             PlaceUI(
                                 title: building.name,
@@ -44,6 +48,20 @@ struct RandomBuildingsView: View {
                                 image: building.image!,
                                 distance: building.distance!
                             )
+                            
+                            ShareLink(
+                                Text(""),
+                                item: "logo",
+                                subject: Text(building.name),
+                                message: Text("\(building.name) .- \(building.description!)"),
+                                preview: SharePreview(Text(building.name))
+                            )
+                            .font(.system(size: 30))
+                            .padding(.trailing, 64)
+                            .padding(.top, 148)
+                            .padding(.horizontal,14)
+                            .foregroundColor(.white)
+                            
                             Button(action: {
                                 favoritesManagerModel.toggleFavorite(buildingID: building.id)
                             }) {
@@ -61,7 +79,6 @@ struct RandomBuildingsView: View {
                     buildingsDataModel.updateRandomBuildings()
                 }
             }
-            
         }
         .padding(.bottom,60)
     }

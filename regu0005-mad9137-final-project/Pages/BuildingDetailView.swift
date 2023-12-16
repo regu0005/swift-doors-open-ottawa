@@ -153,22 +153,32 @@ struct BuildingDetailView: View {
                     Spacer()
                 }
                 .padding(.top,0)
-                
-                HStack(alignment: .top) {
-                    Text("Website:")
+
+                let website = building.website
+                if !website.isEmpty, let url = URL(string: "https://\(website)"), UIApplication.shared.canOpenURL(url) {
+
+                    HStack(alignment: .top) {
+                        Text("Website:")
                             .font(Font.system(size: 16))
                             .frame(maxWidth: 70, alignment: .leading)
-                            .padding(.top,1)
-                            .padding(.leading,30)
+                            .padding(.top, 1)
+                            .padding(.leading, 30)
                             .foregroundColor(.gray)
-                    Text("\(building.website)")
-                            .font(Font.system(size: 16))
-                            .frame(alignment: .leading)
-                            .padding(.horizontal)
-                            .padding(.top,1)
-                            .foregroundColor(.gray)
-                    Spacer()
+                            .bold()
+
+                        Link(destination: url) {
+                            Text(truncateString(building.website, toLength: 30))
+                                .font(Font.system(size: 16))
+                                .frame(alignment: .leading)
+                                .padding(.horizontal)
+                                .padding(.top, 1)
+                                .foregroundColor(.blue)
+                        }
+
+                        Spacer()
+                    }
                 }
+                
                 if let email = building.email, !email.isEmpty {
                     HStack(alignment: .top) {
                         Text("Email:")
@@ -177,6 +187,7 @@ struct BuildingDetailView: View {
                             .padding(.top,1)
                             .padding(.leading,30)
                             .foregroundColor(.gray)
+                            .bold()
                         Text(email)
                             .font(Font.system(size: 16))
                             .frame(alignment: .leading)
@@ -195,6 +206,7 @@ struct BuildingDetailView: View {
                             .padding(.top,1)
                             .padding(.leading,30)
                             .foregroundColor(.gray)
+                            .bold()
                         Text(phoneNumber)
                             .font(Font.system(size: 16))
                             .frame(alignment: .leading)
@@ -213,6 +225,7 @@ struct BuildingDetailView: View {
                             .padding(.top,1)
                             .padding(.leading,30)
                             .foregroundColor(.gray)
+                            .bold()
                         Text(cellphoneNumber)
                             .font(Font.system(size: 16))
                             .frame(alignment: .leading)
@@ -230,6 +243,7 @@ struct BuildingDetailView: View {
                             .padding(.top,1)
                             .padding(.leading,30)
                             .foregroundColor(.gray)
+                            .bold()
                     Text("\(building.address)")
                             .font(Font.system(size: 16))
                             .frame(alignment: .leading)
@@ -246,6 +260,7 @@ struct BuildingDetailView: View {
                             .padding(.top,1)
                             .padding(.leading,30)
                             .foregroundColor(.gray)
+                            .bold()
                     Text(building.imageDescription!)
                             .font(Font.system(size: 14))
                             .frame(alignment: .leading)
