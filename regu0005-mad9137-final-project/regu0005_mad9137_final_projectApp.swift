@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct regu0005_mad9137_final_projectApp: App {
-    var networkMonitor = NetworkMonitor()
+    var networkMonitor = NetworkMonitorService()
     
     var body: some Scene {
         WindowGroup {

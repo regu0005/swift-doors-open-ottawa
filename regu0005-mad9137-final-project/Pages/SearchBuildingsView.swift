@@ -12,7 +12,7 @@ struct SearchBuildingsView: View {
     @ObservedObject var buildingsDataModel : BuildingsDataModel
     @ObservedObject var amenitiesDataModel : AmenitiesDataModel
     @ObservedObject var favoritesManagerModel: FavoritesManagerModel
-    var networkMonitor: NetworkMonitor
+    var networkMonitor: NetworkMonitorService
     
     
     @State private var searchText = ""
@@ -143,5 +143,5 @@ struct SearchBuildingsView: View {
 }
 
 #Preview {
-    SearchBuildingsView(buildingsDataModel:BuildingsDataModel(), amenitiesDataModel:AmenitiesDataModel(), favoritesManagerModel: FavoritesManagerModel() ,networkMonitor:NetworkMonitor())
+    SearchBuildingsView(buildingsDataModel:BuildingsDataModel(), amenitiesDataModel:AmenitiesDataModel(), favoritesManagerModel: FavoritesManagerModel() ,networkMonitor:NetworkMonitorService())
 }

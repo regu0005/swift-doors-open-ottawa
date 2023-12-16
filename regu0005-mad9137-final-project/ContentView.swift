@@ -20,7 +20,7 @@ struct ContentView: View {
     
     @ObservedObject var languageSettings = LanguageSettings()
         
-    @EnvironmentObject var networkMonitor: NetworkMonitor
+    @EnvironmentObject var networkMonitor: NetworkMonitorService
     
     var body: some View {
                 TabView {

@@ -35,6 +35,7 @@
 		B0A982B22B2791990026E182 /* FavoritesManagerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A982B12B2791990026E182 /* FavoritesManagerModel.swift */; };
 		B0CAB0222B2685FB00131B31 /* BuildingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CAB0212B2685FB00131B31 /* BuildingDetailView.swift */; };
 		B0F1513D2B2E42FA0033C51D /* TruncateString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1513C2B2E42FA0033C51D /* TruncateString.swift */; };
+		B0F1513F2B2E4E740033C51D /* NetworkMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F1513E2B2E4E740033C51D /* NetworkMonitorService.swift */; };
 		B0F500FB2B2BFD6900A58731 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F500FA2B2BFD6900A58731 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		B0A982B12B2791990026E182 /* FavoritesManagerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesManagerModel.swift; sourceTree = "<group>"; };
 		B0CAB0212B2685FB00131B31 /* BuildingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingDetailView.swift; sourceTree = "<group>"; };
 		B0F1513C2B2E42FA0033C51D /* TruncateString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruncateString.swift; sourceTree = "<group>"; };
+		B0F1513E2B2E4E740033C51D /* NetworkMonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorService.swift; sourceTree = "<group>"; };
 		B0F500F92B2BFC4B00A58731 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B0F500FA2B2BFD6900A58731 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +161,7 @@
 			children = (
 				B0481EC32B224B57004BC15B /* NetworkMonitor.swift */,
 				B0F500FA2B2BFD6900A58731 /* LocationManager.swift */,
+				B0F1513E2B2E4E740033C51D /* NetworkMonitorService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				B0481EB52B2246CB004BC15B /* ContentView.swift in Sources */,
 				B08DAB2B2B2D490000625A98 /* BuildingsByCategoryView.swift in Sources */,
 				B0481ECE2B225CB4004BC15B /* RandomBuildingsView.swift in Sources */,
+				B0F1513F2B2E4E740033C51D /* NetworkMonitorService.swift in Sources */,
 				B03CDC572B24FACE00993658 /* AmenitiesDataModel.swift in Sources */,
 				B0F1513D2B2E42FA0033C51D /* TruncateString.swift in Sources */,
 				B03CDC512B240C5A00993658 /* FavoritesBuildingsView.swift in Sources */,

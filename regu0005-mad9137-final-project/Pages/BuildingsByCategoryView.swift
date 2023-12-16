@@ -12,7 +12,7 @@ struct BuildingsByCategoryView: View {
     @ObservedObject var amenitiesDataModel : AmenitiesDataModel
     @ObservedObject var favoritesManagerModel: FavoritesManagerModel
     
-    var networkMonitor: NetworkMonitor
+    var networkMonitor: NetworkMonitorService
     var categoryId: Int
     
     @Environment(\.colorScheme) var colorScheme

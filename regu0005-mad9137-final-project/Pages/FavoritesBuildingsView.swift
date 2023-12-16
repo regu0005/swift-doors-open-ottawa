@@ -11,7 +11,7 @@ struct FavoritesBuildingsView: View {
     @ObservedObject var buildingsDataModel : BuildingsDataModel
     @ObservedObject var amenitiesDataModel : AmenitiesDataModel
     @ObservedObject var favoritesManagerModel: FavoritesManagerModel
-    var networkMonitor: NetworkMonitor
+    var networkMonitor: NetworkMonitorService
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -85,5 +85,5 @@ struct FavoritesBuildingsView: View {
 }
 
 #Preview {
-    FavoritesBuildingsView(buildingsDataModel: BuildingsDataModel(), amenitiesDataModel: AmenitiesDataModel(), favoritesManagerModel: FavoritesManagerModel(), networkMonitor: NetworkMonitor())
+    FavoritesBuildingsView(buildingsDataModel: BuildingsDataModel(), amenitiesDataModel: AmenitiesDataModel(), favoritesManagerModel: FavoritesManagerModel(), networkMonitor: NetworkMonitorService())
 }

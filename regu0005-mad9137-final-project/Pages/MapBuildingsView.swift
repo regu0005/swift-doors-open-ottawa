@@ -126,7 +126,7 @@ struct MapBuildingsContainerView: View {
     @ObservedObject var favoritesManagerModel: FavoritesManagerModel
     @State private var selectedBuilding: PostBuilding?
 
-    var networkMonitor: NetworkMonitor
+    var networkMonitor: NetworkMonitorService
 
     @State private var isNavigationActive = false
 

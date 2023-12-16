@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NetUI: View {
-    @EnvironmentObject var networkMonitor : NetworkMonitor
+    @EnvironmentObject var networkMonitor : NetworkMonitorService
     
     var body: some View {
             if networkMonitor.isConnected {

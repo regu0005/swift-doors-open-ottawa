@@ -12,7 +12,7 @@ struct RandomBuildingsView: View {
     @ObservedObject var buildingsDataModel : BuildingsDataModel
     @ObservedObject var amenitiesDataModel : AmenitiesDataModel
     @ObservedObject var favoritesManagerModel: FavoritesManagerModel
-    var networkMonitor: NetworkMonitor
+    var networkMonitor: NetworkMonitorService
     
     @Environment(\.colorScheme) var colorScheme
     @State private var photo = Photo(img: Image("logo"), caption: "building name", subject: "building category", description: "description")

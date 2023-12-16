@@ -13,7 +13,7 @@ struct CategoriesScrollView: View {
     @ObservedObject var amenitiesDataModel : AmenitiesDataModel
     @ObservedObject var favoritesManagerModel: FavoritesManagerModel
     
-    var networkMonitor: NetworkMonitor
+    var networkMonitor: NetworkMonitorService
     @Environment(\.colorScheme) var colorScheme
     @State private var selectedCategoryId: Int?
     @State private var isNavigationActive = false
