@@ -8,6 +8,22 @@
 import SwiftUI
 import MapKit
 
+// Share: Photo Identifiable
+struct Photo: Identifiable {
+    var id = UUID()
+    var img: Image
+    var caption: String
+    var subject: String
+    var description: String
+}
+
+
+extension Photo: Transferable {
+    static var transferRepresentation: some TransferRepresentation {
+        ProxyRepresentation(exporting: \.img)
+    }
+}
+
 struct MapView: UIViewRepresentable {
     var coordinate: CLLocationCoordinate2D
     var capitalName: String
@@ -46,6 +62,8 @@ struct BuildingDetailView: View {
     @State private var expandedText = false
     @State private var textLinesLimit: Int? = 3
 
+    @State private var photo = Photo(img: Image("logo"), caption: "building name", subject: "building category", description: "description")
+    
     
     var body: some View {
         
@@ -93,6 +111,19 @@ struct BuildingDetailView: View {
                     .edgesIgnoringSafeArea(.all)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             
+                    ShareLink(
+                        Text(""),
+                        item: "logo",
+                        subject: Text(building.name),
+                        message: Text("\(building.name) .- \(building.description!)"),
+                        preview: SharePreview(Text(building.name), image: photo.img)
+                    )
+                    .font(.system(size: 30))
+                    .padding(.trailing, 64)
+                    .padding(.top, 202)
+                    .padding(.horizontal,14)
+                    .foregroundColor(.white)
+                    
                     Button(action: {
                         favoritesManagerModel.toggleFavorite(buildingID: building.id)
                     }) {

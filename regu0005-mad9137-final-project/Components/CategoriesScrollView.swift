@@ -55,6 +55,7 @@ struct CategoriesScrollView: View {
                             .padding(.top, 5)
                             .frame(width: cardWidth, height: cardHeight)
                             .background(Color.white)
+                            .foregroundColor(.black)
                             .cornerRadius(10)
                             .shadow(color: Color.black.opacity(0.09), radius: 5, x: 0, y: 2)
                         }
