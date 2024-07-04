@@ -20,7 +20,7 @@ struct CategoriesScrollView: View {
     
     // Constants for layout
     let gridSpacing:    CGFloat = 20
-    let cardWidth:      CGFloat = 170
+    let cardWidth:      CGFloat = 154
     let cardHeight:     CGFloat = 80
     let imageHeight:    CGFloat = 100
     

@@ -39,15 +39,19 @@ struct RandomBuildingsView: View {
 
                     NavigationLink(destination: BuildingDetailView(buildingsDataModel: buildingsDataModel, amenitiesDataModel: amenitiesDataModel, favoritesManagerModel: favoritesManagerModel, networkMonitor: networkMonitor, building: building)) {
                         
-                        
                         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
-                            PlaceUI(
-                                title: building.name,
-                                description: building.address,
-                                visits: building.visits,
-                                image: building.image!,
-                                distance: building.distance!
-                            )
+                                    if let image = building.image, let distance = building.distance {
+                                        PlaceUI(
+                                            title: building.name,
+                                            description: building.address,
+                                            visits: building.visits,
+                                            image: image,
+                                            distance: distance
+                                        )
+                                    } else {
+                                        Text("Building data is incomplete")
+                                            .foregroundColor(.red)
+                                    }
                             
                             ShareLink(
                                 Text(""),
