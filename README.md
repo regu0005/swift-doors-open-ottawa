@@ -46,13 +46,29 @@ The **Doors Open Ottawa iOS App** enhances the event experience by offering offl
 - **MapKit:** To integrate maps and location-based services, providing users with interactive maps of event locations.
 - **RESTful API:** The app communicates with a custom-built API to fetch building data, schedules, and amenities dynamically.
 
+### Back-End Integration
+
+Content is efficiently managed and organized by an internal system developed in **PHP**, **MySQL**, and **Apache server**. This system provides a solid foundation for data management and serves the iOS app with necessary information.
+
+#### System Access
+
+You can explore the system using the following credentials:
+
+- **URL:** [https://buildings.tusmodelos.com](https://buildings.tusmodelos.com)
+- **User:** test007
+- **Password:** test007
+
+For more detailed information about the system, including the relational database design and other technical aspects, please visit:
+
+- **Project info:** [https://portfolio.tusmodelos.com/greguerin/projects/39/doors-open-ottawa](https://portfolio.tusmodelos.com/greguerin/projects/39/doors-open-ottawa)
+
 ## Installation
 
 To run this project locally:
 
 1. Clone this repository:
     ```sh
-    git clone https://github.com/yourusername/doors-open-ottawa-ios-app.git
+    git clone https://github.com/regu0005/swift-doors-open-ottawa.git
     ```
 2. Open the project in Xcode.
 3. Build and run the app on your iOS simulator or device.
