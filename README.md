@@ -64,5 +64,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 If you have any questions or would like to connect, feel free to reach out:
 
-- LinkedIn: [Your LinkedIn Profile]([https://www.linkedin.com/in/yourusername](https://www.linkedin.com/in/gustavo-reguerin/))
+- LinkedIn: [https://www.linkedin.com/in/gustavo-reguerin](https://www.linkedin.com/in/gustavo-reguerin)
 - Email: [reguerin@gmail.com](mailto:reguerin@gmail.com)
