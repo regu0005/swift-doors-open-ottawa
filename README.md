@@ -1,45 +1,50 @@
 # Doors Open Ottawa - iOS App
 
-Welcome to the official repository for the **Doors Open Ottawa** iOS app, your ultimate guide to exploring Ottawa's most intriguing and historically significant buildings. This app is designed to enrich your experience of the **Doors Open Ottawa** event by providing detailed information and interactive maps, all available offline.
+Welcome to the official repository for the **Doors Open Ottawa** iOS app, an application designed to provide users with an immersive experience during the annual Doors Open Ottawa event. 
 
-## About Doors Open Ottawa
+## About the Project
 
-**Doors Open Ottawa** is an esteemed annual event that offers an exclusive glimpse into the heart of Ottawa’s architectural heritage. As part of the global 'Doors Open' initiative, this event celebrates the city’s vibrant history by granting access to a diverse array of buildings, many of which are not typically open to the public.
+**Doors Open Ottawa** is an esteemed annual event that offers an exclusive glimpse into Ottawa’s most intriguing and historically significant buildings. The event celebrates the city's vibrant history by granting access to a diverse array of buildings, many of which are not typically open to the public.
 
-Each year, participants have the rare opportunity to explore behind the scenes of various architectural marvels, including:
+### App Overview
 
-- Government buildings
-- Embassies
-- Historic homes
-- Museums
-- Places of worship
+The **Doors Open Ottawa iOS App** enhances the event experience by offering offline access to detailed information about participating locations, event schedules, and interactive maps. 
 
-This event is more than just an open house; it’s a celebration of Ottawa's rich culture, history, and design, fostering a deeper understanding and appreciation of the city’s built environment. Best of all, the event is free of charge, inviting everyone to engage in this enriching experience.
+## Key Features
 
-## App Features
+### 1. Multilingual Support
+- **Dynamic Content Delivery:** The app dynamically serves content based on the user's language preferences, with English as the default. This ensures a broader reach and inclusivity for both local and international users.
+- **Internationalization:** Leveraged Swift’s localization features to seamlessly support multiple languages.
 
-The **Doors Open Ottawa iOS App** is designed to enhance your experience with features such as:
+### 2. Building Categories
+- **Organized Content:** Buildings are categorized by type, making it easy for users to find and explore locations of interest. The app's data structure ensures accurate classification and efficient retrieval of information.
+- **Category Management:** Implemented in the back-end API, ensuring that new categories can be added or modified without disrupting the user experience.
 
-- **Offline Access:** No need to worry about connectivity. Access detailed building information and interactive maps without an internet connection.
-- **User-Friendly Interface:** Navigate the event with ease using our intuitive and streamlined app interface.
-- **Interactive Maps:** Ensure you don’t miss any architectural wonders by using our interactive maps to explore the event locations.
+### 3. Schedule Information
+- **Detailed Schedules:** Users can review planned schedules and open hours for each location, from Monday to Friday. This feature helps users plan their visits efficiently.
+- **Time Management Integration:** Schedule data is fetched and displayed in a user-friendly format, with considerations for local time zones.
 
-## Why This Project?
+### 4. Amenities Customization
+- **Customizable Icons:** The app features flexible customization of amenities, where each building can display unique icons and descriptions. This visual aid enhances user understanding of available facilities.
+- **Scalable Design:** Designed to allow easy updates or additions of new amenities without requiring a complete app update.
 
-This project showcases my skills in iOS development, particularly in creating user-friendly applications that provide real-world value. The **Doors Open Ottawa iOS App** is a testament to my ability to:
+## Future Enhancements
 
-- Develop and maintain high-quality, feature-rich applications
-- Design intuitive and engaging user interfaces
-- Implement offline capabilities for enhanced user experience
-- Work with data to provide informative and interactive content
+### 1. User Authentication
+- **User Registration & Login:** Planned integration for user authentication, enabling features such as building reviews, ratings, and the ability to upload pictures of visits.
+- **Secure Authentication:** Considering OAuth2 and JWT for secure user management and data protection.
+- **User-Generated Content:** Will allow users to contribute to the app by sharing their experiences, thus creating a community-driven resource.
+
+### 2. Expanded Offline Capabilities
+- **Enhanced Data Caching:** Improving offline data management to ensure that users can access the most up-to-date information, even when not connected to the internet.
 
 ## Technologies Used
 
-- **Swift:** The main programming language used for app development.
-- **Xcode:** The integrated development environment (IDE) used for coding and debugging.
-- **Core Data:** For managing the app’s data model.
-- **MapKit:** To integrate maps and location-based services.
-- **UserDefaults:** For storing and retrieving user preferences.
+- **Swift:** The primary programming language used for the app, ensuring performance and reliability.
+- **Xcode:** The development environment where the project is coded, debugged, and tested.
+- **Core Data:** Used for managing the app's data model, particularly for offline storage of building information and schedules.
+- **MapKit:** To integrate maps and location-based services, providing users with interactive maps of event locations.
+- **RESTful API:** The app communicates with a custom-built API to fetch building data, schedules, and amenities dynamically.
 
 ## Installation
 
@@ -54,7 +59,7 @@ To run this project locally:
 
 ## Contributing
 
-I welcome contributions to this project. Please feel free to fork the repository and submit a pull request with your improvements. For major changes, please open an issue first to discuss what you would like to change.
+Contributions to this project are welcome. Feel free to fork the repository, make your improvements, and submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
